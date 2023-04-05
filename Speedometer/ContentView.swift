@@ -1,7 +1,7 @@
 import SwiftUI
 struct ContentView: View {
     @ObservedObject var locationManager = LocationManager()
-    @State var isMilesPerHour = true // Variable de estado para la unidad de medida
+    @State var isMilesPerHour = true 
     var speed: String { return isMilesPerHour ? locationManager.speedMph : locationManager.speedKmh }
     var speedUnit: String { return isMilesPerHour ? "MPH" : "km/h" }
     var speedAccuracy: String { return isMilesPerHour ? locationManager.speedAccuracyMph : locationManager.speedAccuracyKmh }
@@ -25,7 +25,7 @@ struct ContentView: View {
             VStack {
                 Text(speed)
                     .foregroundColor(locationManager.speedColor)
-                    .font(.system(size: 500, design: .rounded))
+                    .font(.system(size: 250, design: .rounded))
                     .minimumScaleFactor(0.01)
                     .lineLimit(1)
                 Text(speedUnit)

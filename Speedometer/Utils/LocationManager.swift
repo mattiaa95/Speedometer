@@ -8,25 +8,25 @@ class LocationManager: NSObject, ObservableObject {
     let objectWillChange = PassthroughSubject<Void, Never>()
     let green: Color = Color(red: 0, green: 1, blue: 0, opacity: 1)
     let red: Color = Color(red: 1, green: 0, blue: 0, opacity: 1)
-    @Published var speedMph: String = "???" {
+    @Published var speedMph: String = "0" {
         willSet { objectWillChange.send() }
     }
-    @Published var speedKmh: String = "???" {
+    @Published var speedKmh: String = "0" {
         willSet { objectWillChange.send() }
     }
     @Published var speedColor: Color = .purple {
         willSet { objectWillChange.send() }
     }
-    @Published var speedAccuracyMph: String = "???" {
+    @Published var speedAccuracyMph: String = "0" {
         willSet { objectWillChange.send() }
     }
-    @Published var speedAccuracyKmh: String = "???" {
+    @Published var speedAccuracyKmh: String = "0" {
         willSet { objectWillChange.send() }
     }
-    @Published var averageSpeedMph: String = "???" {
+    @Published var averageSpeedMph: String = "0" {
         willSet { objectWillChange.send() }
     }
-    @Published var averageSpeedKmh: String = "???" {
+    @Published var averageSpeedKmh: String = "0" {
         willSet { objectWillChange.send() }
     }
     @Published var degrees: Double = .zero {
@@ -57,17 +57,17 @@ class LocationManager: NSObject, ObservableObject {
         distance = 0
         speedsMph = []
         speedsKmh = []
-        speedMph = "???"
-        speedKmh = "???"
-        averageSpeedMph = "???"
-        averageSpeedKmh = "???"
+        speedMph = "0"
+        speedKmh = "0"
+        averageSpeedMph = "0"
+        averageSpeedKmh = "0"
         degrees = -1
     }
 }
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
-        if (location.speedAccuracy >= 0) {
+        if (location.speed >= 0) {
             let sMph: Double = 2.23694 * location.speed
             let sKmh: Double = location.speed * 3.6
             speedMph = String(format: "%.0f", sMph)
